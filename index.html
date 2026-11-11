@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wireframe Pengaduan Fasilitas Kampus</title>
+<style>
+  :root{--biru:#2c5a8c;--bar:#dce6f0;--garis:#888;--abu:#ececec;--teks:#222;--redup:#777}
+  *{box-sizing:border-box}
+  body{margin:0;padding:24px;background:#f3f4f6;font-family:Inter,"Segoe UI",Arial,sans-serif;color:var(--teks)}
+  .frame{max-width:960px;margin:0 auto;background:#fff;border:2px solid var(--teks);min-height:540px}
+  .bar{background:var(--bar);border-bottom:2px solid var(--teks);padding:14px 18px;display:flex;justify-content:space-between;font-weight:600}
+  .bar button{all:unset;cursor:pointer;font-weight:400}
+  .bar button:hover{text-decoration:underline}
+  .isi{padding:24px}
+  .layar{display:none}.layar.aktif{display:block}
+  h2{margin:0 0 16px;font-size:20px}
+  h3{margin:18px 0 10px;font-size:15px}
+  label{display:block;font-size:13px;color:var(--redup);margin:12px 0 4px}
+  input,select,textarea{width:100%;padding:10px;border:2px solid var(--garis);font:inherit;background:#fff}
+  textarea{min-height:90px}
+  button.b{padding:10px 18px;border:2px solid var(--biru);background:var(--biru);color:#fff;font-weight:600;cursor:pointer;font:inherit;font-weight:600}
+  button.s{background:#fff;color:var(--biru)}
+  button.f{background:var(--abu);color:var(--teks);border-color:var(--garis);font-weight:400}
+  button.f.on{background:var(--bar)}
+  button:focus-visible,tr:focus-visible{outline:3px solid #f0a020;outline-offset:2px}
+  .baris{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .sp{justify-content:space-between}
+  .kol{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media(max-width:640px){.kol{grid-template-columns:1fr}}
+  table{width:100%;border-collapse:collapse;border:2px solid var(--garis);margin-top:14px}
+  th{background:var(--bar);text-align:left}
+  th,td{padding:10px;border:1px solid var(--garis);font-size:14px}
+  tbody tr{cursor:pointer}
+  tbody tr:hover{background:#f2f7fc}
+  tr.pilih{background:var(--bar)}
+  .kartu{max-width:380px;margin:40px auto;border:2px solid var(--garis);padding:28px;text-align:center}
+  .kartu label{text-align:left}
+  .kartu .b{width:100%;margin-top:18px}
+  .pintas{margin-top:18px;border-top:1px dashed var(--garis);padding-top:12px;font-size:13px;color:var(--redup)}
+  .pintas .baris{justify-content:center;margin-top:8px}
+  .lencana{display:inline-block;padding:6px 14px;border:2px solid var(--garis);background:#fde5d8;font-size:14px}
+  .foto{background:var(--abu);border:2px solid var(--garis);min-height:150px;display:flex;align-items:center;justify-content:center;color:var(--redup);text-align:center;padding:10px}
+  ul.rw{list-style:none;padding:0;margin:0}
+  ul.rw li{padding:7px 0;display:flex;gap:12px}
+  ul.rw li:before{content:"";width:10px;height:10px;border-radius:50%;background:var(--biru);margin-top:5px;flex:none}
+  ul.rw li:last-child:before{background:var(--teks)}
+  .angka{border:2px solid var(--garis);padding:14px;text-align:center}
+  .angka b{display:block;font-size:26px}
+  .batang{display:flex;align-items:center;gap:10px;margin:8px 0;font-size:14px}
+  .batang span.l{width:90px}.batang i{display:block;height:18px;background:var(--biru)}
+  .info{font-size:13px;color:var(--biru);margin-top:14px}
+  #toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--teks);color:#fff;padding:10px 18px;display:none}
+  .nav{max-width:960px;margin:0 auto 12px;font-size:13px;color:var(--redup)}
+  .nav a{color:var(--biru);cursor:pointer;margin-right:10px}
+</style>
+</head>
+<body>
+
+<div class="nav">Lompat ke layar:
+  <a data-ke="w1">W1</a><a data-ke="w2">W2</a><a data-ke="w3">W3</a><a data-ke="w4">W4</a>
+  <a data-ke="w5">W5</a><a data-ke="w6">W6</a><a data-ke="w7">W7</a><a data-ke="w8">W8</a>
+</div>
+
+<div class="frame">
+  <div class="bar"><span>Pengaduan Fasilitas Kampus</span><button id="peran" title="Keluar"></button></div>
+  <div class="isi">
+
+    <!-- W1 Masuk -->
+    <section class="layar" id="w1" data-peran="">
+      <div class="kartu">
+        <h2>Masuk ke Sistem</h2>
+        <div style="color:var(--redup);font-size:14px">Gunakan akun kampus</div>
+        <label for="em">Email kampus</label><input id="em" placeholder="nama@unsulbar.ac.id">
+        <label for="pw">Kata sandi</label><input id="pw" type="password" placeholder="••••••••">
+        <button class="b" data-ke="w2">Masuk</button>
+        <div class="pintas">Pintasan peran (khusus prototipe)
+          <div class="baris">
+            <button class="b s" data-ke="w2">Pelapor</button>
+            <button class="b s" data-ke="w5">Admin Sarpras</button>
+            <button class="b s" data-ke="w7">Teknisi</button>
+            <button class="b s" data-ke="w8">Kepala Sarpras</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- W2 Tiket Saya -->
+    <section class="layar" id="w2" data-peran="Pelapor">
+      <div class="baris sp"><h2>Tiket Saya</h2><button class="b" data-ke="w3">+ Buat Pengaduan</button></div>
+      <div class="baris">
+        <input style="flex:1;min-width:200px" placeholder="Cari nomor tiket / lokasi">
+        <button class="b f on">Semua</button><button class="b f">Berjalan</button><button class="b f">Selesai</button>
+      </div>
+      <table><thead><tr><th>No. Tiket</th><th>Lokasi / Kategori</th><th>Tanggal</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr tabindex="0" data-ke="w4"><td>PGD-0012</td><td>Lab Komputer / AC</td><td>05 Nov</td><td>Dikerjakan</td></tr>
+          <tr tabindex="0" data-ke="w4"><td>PGD-0009</td><td>Gedung A / Lampu</td><td>02 Nov</td><td>Selesai</td></tr>
+          <tr tabindex="0" data-ke="w4"><td>PGD-0007</td><td>Perpustakaan / Kursi</td><td>29 Okt</td><td>Ditutup</td></tr>
+          <tr tabindex="0" data-ke="w4"><td>PGD-0003</td><td>Toilet B / Kran</td><td>21 Okt</td><td>Ditolak</td></tr>
+        </tbody></table>
+      <div class="info">Klik baris untuk membuka detail dan status tiket (W4)</div>
+    </section>
+
+    <!-- W3 Buat Pengaduan -->
+    <section class="layar" id="w3" data-peran="Pelapor">
+      <h2>Buat Pengaduan Baru</h2>
+      <div class="kol">
+        <div><label>Lokasi *</label><select><option>Pilih gedung / ruang</option><option>Lab Komputer</option><option>Gedung A</option><option>Perpustakaan</option></select></div>
+        <div><label>Kategori kerusakan *</label><select><option>Pilih kategori</option><option>AC</option><option>Lampu</option><option>Kursi / meja</option><option>Kran / air</option></select></div>
+      </div>
+      <label>Deskripsi kerusakan *</label><textarea placeholder="Jelaskan kerusakan secara singkat..."></textarea>
+      <div class="kol" style="margin-top:12px">
+        <div><label>Tingkat urgensi</label>
+          <div class="baris" id="urgensi"><button class="b f">Rendah</button><button class="b f on">Sedang</button><button class="b f">Tinggi</button></div>
+        </div>
+        <div><label>Foto (opsional)</label><div class="foto">[ pilih berkas ]</div></div>
+      </div>
+      <div class="baris" style="margin-top:20px"><button class="b" data-ke="w4" data-pesan="Tiket terkirim, status Baru">Kirim</button><button class="b s" data-ke="w2">Batal</button></div>
+    </section>
+
+    <!-- W4 Detail Tiket -->
+    <section class="layar" id="w4" data-peran="Pelapor">
+      <div class="baris sp"><h2>PGD-0012 · Lab Komputer / AC rusak</h2><span class="lencana">Selesai</span></div>
+      <div class="kol">
+        <div>
+          <p style="color:var(--redup);font-size:14px">Deskripsi: AC tidak dingin sejak Senin...</p>
+          <h3>Riwayat status</h3>
+          <ul class="rw"><li>Baru — 05 Nov 08.10</li><li>Terverifikasi — 05 Nov 10.30</li><li>Ditugaskan — 05 Nov 11.00</li><li>Dikerjakan — 06 Nov 09.15</li><li>Selesai — 06 Nov 14.40</li></ul>
+        </div>
+        <div>
+          <div class="foto">Foto bukti perbaikan</div>
+          <p style="color:var(--redup);font-size:13px">Catatan teknisi: unit AC diservis.</p>
+          <div class="baris"><button class="b" data-ke="w2" data-pesan="Tiket Ditutup">Sudah Selesai</button><button class="b s" id="buka">Buka Kembali</button></div>
+          <div class="info">Konfirmasi → tiket Ditutup</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- W5 Daftar Tiket Admin -->
+    <section class="layar" id="w5" data-peran="Admin Sarpras">
+      <div class="baris sp"><h2>Daftar Tiket</h2><button class="b s" data-pesan="Layar pendukung UC-07, di luar wireframe utama">Kelola Kategori &amp; Lokasi</button></div>
+      <div class="baris">
+        <select style="width:auto"><option>Status: semua</option><option>Baru</option><option>Terverifikasi</option></select>
+        <select style="width:auto"><option>Kategori: semua</option></select>
+        <select style="width:auto"><option>Lokasi: semua</option></select>
+        <select style="width:auto"><option>Prioritas: semua</option><option>Tinggi</option><option>Sedang</option><option>Rendah</option></select>
+      </div>
+      <table><thead><tr><th>No. Tiket</th><th>Lokasi / Kategori</th><th>Pelapor</th><th>Prioritas</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr tabindex="0" data-ke="w6"><td>PGD-0013</td><td>Gedung B / Pintu</td><td>Putri A.</td><td>—</td><td>Baru</td></tr>
+          <tr tabindex="0" data-ke="w6"><td>PGD-0012</td><td>Lab Komputer / AC</td><td>Farid</td><td>Tinggi</td><td>Dikerjakan</td></tr>
+          <tr tabindex="0" data-ke="w6"><td>PGD-0010</td><td>Aula / Proyektor</td><td>Aksan</td><td>Sedang</td><td>Ditugaskan</td></tr>
+        </tbody></table>
+      <div class="info">Klik baris untuk membuka verifikasi dan penugasan (W6)</div>
+    </section>
+
+    <!-- W6 Verifikasi dan Penugasan -->
+    <section class="layar" id="w6" data-peran="Admin Sarpras">
+      <h2>PGD-0013 · Gedung B / Pintu rusak</h2>
+      <div class="kol">
+        <div>
+          <p style="color:var(--redup);font-size:14px">Deskripsi: engsel pintu lepas, pintu tidak bisa ditutup.</p>
+          <div class="foto">Foto laporan</div>
+          <h3>Verifikasi</h3>
+          <div class="baris"><button class="b" data-pesan="Status: Terverifikasi">Terima</button><button class="b s" data-pesan="Status: Menunggu Data">Minta Data</button><button class="b s" data-pesan="Status: Ditolak">Tolak</button></div>
+          <label>Alasan (wajib jika Minta Data / Tolak)</label><textarea></textarea>
+        </div>
+        <div>
+          <h3 style="margin-top:0">Penugasan</h3>
+          <label>Prioritas</label><select><option>Rendah</option><option selected>Sedang</option><option>Tinggi</option></select>
+          <label>Teknisi</label><select><option>Pilih teknisi</option><option>Teknisi 1</option><option>Teknisi 2</option></select>
+          <button class="b" style="margin-top:20px" data-ke="w5" data-pesan="Status: Ditugaskan">Simpan Penugasan</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- W7 Teknisi -->
+    <section class="layar" id="w7" data-peran="Teknisi">
+      <h2>Tugas Saya</h2>
+      <div class="kol" style="grid-template-columns:1.1fr 1fr">
+        <table style="margin-top:0"><thead><tr><th>No. Tiket</th><th>Lokasi</th><th>Status</th></tr></thead>
+          <tbody id="tugas">
+            <tr tabindex="0" class="pilih" data-t="PGD-0012 · Lab Komputer / AC"><td>PGD-0012</td><td>Lab Komputer</td><td>Dikerjakan</td></tr>
+            <tr tabindex="0" data-t="PGD-0010 · Aula / Proyektor"><td>PGD-0010</td><td>Aula</td><td>Ditugaskan</td></tr>
+          </tbody></table>
+        <div>
+          <h3 style="margin-top:0" id="judulTugas">PGD-0012 · Lab Komputer / AC</h3>
+          <label>Status</label><select><option>Ditugaskan</option><option selected>Dikerjakan</option><option>Selesai</option></select>
+          <label>Catatan perbaikan / kendala</label><textarea></textarea>
+          <label>Foto bukti (wajib sebelum Selesai)</label><div class="foto" style="min-height:70px">[ unggah foto bukti ]</div>
+          <button class="b" style="margin-top:16px" data-pesan="Progres tersimpan">Simpan</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- W8 Dashboard -->
+    <section class="layar" id="w8" data-peran="Kepala Sarpras">
+      <div class="baris sp"><h2>Dashboard Kinerja Layanan</h2><button class="b" data-pesan="Laporan sedang diunduh">Unduh Laporan</button></div>
+      <div class="kol" style="grid-template-columns:repeat(auto-fit,minmax(130px,1fr))">
+        <div class="angka"><b>24</b>Tiket masuk</div><div class="angka"><b>9</b>Berjalan</div>
+        <div class="angka"><b>13</b>Selesai</div><div class="angka"><b>2</b>Ditolak</div>
+      </div>
+      <h3>Tiket per kategori</h3>
+      <div class="batang"><span class="l">AC</span><i style="width:60%"></i>9</div>
+      <div class="batang"><span class="l">Lampu</span><i style="width:45%"></i>7</div>
+      <div class="batang"><span class="l">Kursi / meja</span><i style="width:30%"></i>5</div>
+      <div class="batang"><span class="l">Kran / air</span><i style="width:20%"></i>3</div>
+      <h3>Tiket terlama belum selesai</h3>
+      <table style="margin-top:0"><tbody>
+        <tr><td>PGD-0005</td><td>Aula / Proyektor</td><td>12 hari</td></tr>
+        <tr><td>PGD-0008</td><td>Toilet A / Kran</td><td>9 hari</td></tr>
+      </tbody></table>
+    </section>
+
+  </div>
+</div>
+<div id="toast" role="status"></div>
+
+<script>
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  let timer;
+
+  function pesan(t){
+    const e = $('#toast'); e.textContent = t; e.style.display = 'block';
+    clearTimeout(timer); timer = setTimeout(() => e.style.display = 'none', 2200);
+  }
+
+  function ke(id){
+    $$('.layar').forEach(l => l.classList.toggle('aktif', l.id === id));
+    const p = $('#' + id).dataset.peran;
+    $('#peran').textContent = p ? p + ' (keluar)' : '';
+    window.scrollTo(0, 0);
+  }
+
+  // Semua elemen dengan data-ke berpindah layar; data-pesan menampilkan notifikasi
+  document.addEventListener('click', e => {
+    const el = e.target.closest('[data-ke],[data-pesan]');
+    if (!el) return;
+    if (el.dataset.pesan) pesan(el.dataset.pesan);
+    if (el.dataset.ke) ke(el.dataset.ke);
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && e.target.matches('tr[data-ke]')) ke(e.target.dataset.ke);
+  });
+
+  $('#peran').onclick = () => ke('w1');
+
+  // Tombol filter / urgensi: satu pilihan aktif per kelompok
+  $$('.baris').forEach(g => {
+    const fs = $$(':scope > .f', g);
+    fs.forEach(b => b.onclick = () => { fs.forEach(x => x.classList.remove('on')); b.classList.add('on'); });
+  });
+
+  // W4: buka kembali wajib alasan
+  $('#buka').onclick = () => {
+    const a = prompt('Alasan membuka kembali tiket (wajib):');
+    if (a && a.trim()){ pesan('Status: Dibuka Kembali'); ke('w2'); }
+    else if (a !== null) pesan('Alasan wajib diisi');
+  };
+
+  // W7: klik baris tugas mengisi panel progres
+  $$('#tugas tr').forEach(r => r.onclick = () => {
+    $$('#tugas tr').forEach(x => x.classList.remove('pilih'));
+    r.classList.add('pilih'); $('#judulTugas').textContent = r.dataset.t;
+  });
+
+  ke('w1');
+</script>
+</body>
+</html>
